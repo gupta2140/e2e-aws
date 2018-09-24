@@ -106,7 +106,7 @@ jenkins-aws-deploy:
 Litmus-Chaos:
   image: atulabhi/kops:v8
   dependencies:
-    - openebs-aws-deploy
+    - stateful-apps-deploy
   stage: chaos-test
   script:
    #- echo " Introducing-Chaos"
