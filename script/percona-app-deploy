@@ -8,7 +8,7 @@ set -x
 ## TODO: Ideally, run_metadata should be passed as gitlab runner (CI runtime) ENV
 run_metadata=""
 
-## https://github.com/openebs/litmus/blob/master/apps/percona/deployers/percona_vars.yaml
+## https://github.com/openebs/litmus/blob/master/apps/percona/deployers/test_vars.yml
 test_name="percona-deployment" 
 
 if [[ -n "$run_metadata" ]]; then
@@ -72,7 +72,7 @@ echo "Running the litmus test.."
 
 jobNameCmd="kubectl get jobs -n litmus --no-headers -o jsonpath='{.items[?(@.metadata.labels.app==\"percona-deployment\")].metadata.name}'"
 
-job_deploy_out=$(kubectl create -f apps/percona/deployers/run_litmus_test.yaml) && \
+job_deploy_out=$(kubectl create -f apps/percona/deployers/run_litmus_test.yml) && \
 job_name=$(eval $jobNameCmd); retcode=$?
 error_handler $retcode msg="Unable to run litmusbook, exiting" action="exit"
 
