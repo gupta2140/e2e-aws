@@ -60,20 +60,19 @@ mongodb-jiva:
     paths:
       - aws-openebs/
 
-        #postgres-jiva:
-        #image: atulabhi/kops:v8
-        #stage: stateful-apps-deploy
-        #dependencies:
-        # - openebs-aws-deploy
-        #script: 
+postgres-jiva:
+  image: atulabhi/kops:v8
+  stage: stateful-apps-deploy
+  dependencies:
+    - openebs-aws-deploy
+  script: 
    #- echo "jobs-AWS-Started"
-   #- chmod 775 ./script/postgres-app-deploy
-   #  - ./script/postgres-app-deploy
+   - chmod 775 ./script/postgres-app-deploy
+   - ./script/postgres-app-deploy
 
-        #artifacts:
-        #paths:
-        #- aws-openebs/
-
+  artifacts:
+    paths:
+      - aws-openebs/
 
 cassandra-jiva:
   image: atulabhi/kops:v8
@@ -89,20 +88,19 @@ cassandra-jiva:
     paths:
       - aws-openebs/
 
-
-        #jenkins-jiva:
-        #  image: atulabhi/kops:v8
-        #stage: stateful-apps-deploy
-        #dependencies:
-        #- openebs-aws-deploy
-        #script: 
+jenkins-jiva:
+  image: atulabhi/kops:v8
+  stage: stateful-apps-deploy
+  dependencies:
+    - openebs-aws-deploy
+  script: 
    #- echo "jobs-AWS-Started"
-   #- chmod 775 ./script/jenkins-app-deploy
-   #- ./script/jenkins-app-deploy
+   - chmod 775 ./script/jenkins-app-deploy
+   - ./script/jenkins-app-deploy
 
-        # artifacts:
-        #paths:
-        #- aws-openebs/
+  artifacts:
+    paths:
+      - aws-openebs/
 
 percona-loadgen:
   image: atulabhi/kops:v8
@@ -149,7 +147,7 @@ mongodb-loadgen:
 Litmus-Chaos:
   image: atulabhi/kops:v8
   dependencies:
-    - percona-jiva
+    - percona-loadgen
   stage: chaos-test
   script:
    - chmod 775 ./script/app-chaos
