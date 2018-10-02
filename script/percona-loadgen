@@ -54,7 +54,7 @@ cp -r aws-openebs/ssh/. ~/.ssh/
 #cd litmus; git checkout v0.7-RC1
 
 git clone https://github.com/dargasudarshan/litmus.git
-cd litmus; git checkout test
+cd litmus; git checkout load
 
 task_delimiter;
 
